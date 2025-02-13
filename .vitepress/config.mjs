@@ -18,7 +18,24 @@ export default defineConfig({
       '/前端笔记/': [
         {
           text: '前端笔记',
-          items: [{ text: 'HTML', link: '/前端笔记/HTML.md' }]
+          items: [
+            { text: 'HTML', link: '/前端笔记/HTML.md' },
+            { text: 'CSS', link: '/前端笔记/CSS.md' },
+            { text: 'SASS', link: '/前端笔记/SASS.md' },
+            { text: 'Less', link: '/前端笔记/Less.md' },
+            { text: 'Tailwind CSS', link: '/前端笔记/Tailwind CSS.md' },
+            { text: 'JS', link: '/前端笔记/JS.md' },
+            { text: 'WebAPI', link: '/前端笔记/WebAPI.md' },
+            { text: 'ES6', link: '/前端笔记/ES6.md' },
+            { text: 'Ajax', link: '/前端笔记/Ajax.md' },
+            { text: 'FetchAPI', link: '/前端笔记/FetchAPI.md' },
+            { text: 'Node.js', link: '/前端笔记/Node.js.md' },
+            { text: 'Git', link: '/前端笔记/Git.md' },
+            { text: 'Mock.js', link: '/前端笔记/Mock.js.md' },
+            { text: 'SVG', link: '/前端笔记/SVG.md' },
+            { text: 'Canvas', link: '/前端笔记/Canvas.md' },
+            { text: 'Vue 2', link: '/前端笔记/Vue 2.md' },
+          ]
         }
       ],
       '/Java笔记/': [
