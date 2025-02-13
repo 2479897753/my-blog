@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/repo/',
+  base: '/my-blog/',
   title: 'Joker Huo - 前端知识库',
   description: '前端知识库',
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
