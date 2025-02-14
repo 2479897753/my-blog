@@ -5,9 +5,12 @@ export default defineConfig({
   base: '/my-blog/',
   title: 'Joker Huo - 前端知识库',
   description: '前端知识库',
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  head: [['link', { rel: 'icon', href: '/my-blog/favicon.ico' }]],
+  appearance: 'dark',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: { light: '/book.svg', dark: '/book_light.svg' },
+
     nav: [
       { text: '首页', link: '/' },
       { text: '前端笔记', link: '/前端笔记/HTML.md' },
@@ -34,7 +37,7 @@ export default defineConfig({
             { text: 'Mock.js', link: '/前端笔记/Mock.js.md' },
             { text: 'SVG', link: '/前端笔记/SVG.md' },
             { text: 'Canvas', link: '/前端笔记/Canvas.md' },
-            { text: 'Vue 2', link: '/前端笔记/Vue 2.md' },
+            { text: 'Vue 2', link: '/前端笔记/Vue 2.md' }
           ]
         }
       ],

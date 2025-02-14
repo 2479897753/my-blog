@@ -4,12 +4,12 @@ vue create my-project
 ```
 
 ## data - 响应式状态
-> 当一个 Vue 实例被创建时，`**data**` 对象中的所有 `**property**` 将会被加入到 Vue 的响应式系统中。当这些 `**property**` 的值发生改变时，视图将会响应更新并匹配对应的值
+> 当一个 Vue 实例被创建时，`data` 对象中的所有 `property` 将会被加入到 Vue 的响应式系统中。当这些 `property` 的值发生改变时，视图将会响应更新并匹配对应的值
 >
 
 + **注意：**
-    - 如果修改实例上的 `**property**`，并不在 `**data**` 中，则不会触发任何视图的更新
-    - 一个组件的 `**data**` 选项必须是一个函数，这样才可以保证每个实例都有自己的数据副本。
+    - 如果修改实例上的 `property`，并不在 `data` 中，则不会触发任何视图的更新
+    - 一个组件的 `data` 选项必须是一个函数，这样才可以保证每个实例都有自己的数据副本。
 
 ```javascript
 const data = { a: 1 }
@@ -31,17 +31,17 @@ console.log(data.a) // 2
 > 在 Vue 实例生命周期的不同阶段执行一些特定任务
 >
 
-+ `**beforeCreate()**` - 实例创建之前，数据观测和事件配置之前
-+ `**created()**` - 实例创建之后，数据观测和事件配置之后
-+ `**beforeMount()**` - 挂载开始之前
-+ `**mounted()**` - 实例挂载之后
-+ `**beforeUpdate()**` - 数据更新时调用，发生在虚拟 DOM 打补丁之前
-+ `**updated()**` - 由于数据更改导致的虚拟 DOM 重新渲染和打补丁之后
-+ `**beforeDestroy()**` - 实例销毁之前调用
-+ `**destroyed()**` - 实例销毁之后调用
++ `beforeCreate()` - 实例创建之前，数据观测和事件配置之前
++ `created()` - 实例创建之后，数据观测和事件配置之后
++ `beforeMount()` - 挂载开始之前
++ `mounted()` - 实例挂载之后
++ `beforeUpdate()` - 数据更新时调用，发生在虚拟 DOM 打补丁之前
++ `updated()` - 由于数据更改导致的虚拟 DOM 重新渲染和打补丁之后
++ `beforeDestroy()` - 实例销毁之前调用
++ `destroyed()` - 实例销毁之后调用
 + **注意：**
-    - `**mounted**`** **不会保证所有的子组件也都被挂在完成。如果你希望等到整个视图都渲染完毕再执行某些操作，可以在 `**mounted**` 内部使用 `**vm.$nextTick**`
-    - `**updated**` 不会保证所有的子组件也都被重新渲染完毕。如果你希望等到整个视图都渲染完毕，可以在 `**updated**` 里使用 `**vm.$nextTick**`
+    - `mounted` 不会保证所有的子组件也都被挂载完成。如果你希望等到整个视图都渲染完毕再执行某些操作，可以在 `mounted` 内部使用 `vm.$nextTick`
+    - `updated` 不会保证所有的子组件也都被重新渲染完毕。如果你希望等到整个视图都渲染完毕，可以在 `updated` 里使用 `vm.$nextTick`
 
 ![](https://cdn.nlark.com/yuque/0/2024/png/33977556/1719275341622-03a7bfc0-dee0-4c06-8276-4d72036c5632.png)
 
@@ -49,8 +49,8 @@ console.log(data.a) // 2
 > 在 Dom 标签中，直接插入内容
 >
 
-+ **语法：**`**{{ 表达式 }}**`
-+ **注意：**模板表达式都被放在沙盒中，只能访问[**全局变量的一个白名单**](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9)，如 `**Math**` 和 `**Date**` 。不能在模板表达式中访问用户定义的全局变量。
++ **语法：**`{{ 表达式 }}`
++ **注意：** 模板表达式都被放在沙盒中，只能访问[**全局变量的一个白名单**](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9)，如 `Math` 和 `Date` 。不能在模板表达式中访问用户定义的全局变量。
 
 ```vue
 <template>
@@ -80,15 +80,15 @@ console.log(data.a) // 2
 > 绑定数据到元素的属性上
 >
 
-+ **语法：**`**v-bind:属性名="表达式"**`
-+ **缩写：**`**:属性名="表达式"**`
-+ **动态参数：**`**:[属性名]="表达式"**`
++ **语法：**`v-bind:属性名="表达式"`
++ **缩写：**`:属性名="表达式"`
++ **动态参数：**`:[属性名]="表达式"`
 + **使用动态参数时的注意事项：**
     1. 参数属性名，可以是一个变量，也可以是一个表达式
     2. 定义的参数属性名，必须小写
     3. 如果是一个变量，预期得到的值是一个字符串，任何其它非字符串类型的值都会触发一个警告
-    4. 如果是一个表达式，应避免使用空格和引号等特殊字符，否则会触发一个编译警告，例如：`**<a v-bind:['foo' + bar]="value"> ... </a>**`
-+ **注意：**属性名必须是合法的 HTML 特性名，不能包含空格、大写字母、数字、连字符、点号等特殊字符。
+    4. 如果是一个表达式，应避免使用空格和引号等特殊字符，否则会触发一个编译警告，例如：`<a v-bind:['foo' + bar]="value"> ... </a>`
++ **注意：** 属性名必须是合法的 HTML 特性名，不能包含空格、大写字母、数字、连字符、点号等特殊字符。
 
 ```vue
 <template>
@@ -112,7 +112,7 @@ console.log(data.a) // 2
 > 对 prop 实现双向数据绑定
 >
 
-+ **注意：**带有 `**.sync**` 修饰符的 `**v-bind**` 不能和表达式一起使用 ，例如 `**:title.sync="doc.title + '!'"**` 是无效的，类似 `**v-model**`
++ **注意：** 带有 `.sync` 修饰符的 `v-bind` 不能和表达式一起使用 ，例如 `:title.sync="doc.title + '!'"` 是无效的，类似 `v-model`
 
 ```vue
 <text-document :title.sync="doc.title"></text-document>
@@ -132,26 +132,26 @@ console.log(data.a) // 2
 > 绑定事件监听器
 >
 
-+ **语法：**`**v-on:事件名="函数名"**`
-+ **缩写：**`**@事件名="函数名"**`
-+ **动态参数：**`**@:[事件名]="函数名"**`
-+ **使用动态参数时的注意事项：请结合 **[**v-bind**](#GakWA)
++ **语法：**`v-on:事件名="函数名"`
++ **缩写：**`@事件名="函数名"`
++ **动态参数：**`@:[事件名]="函数名"`
++ **使用动态参数时的注意事项：请结合** [**v-bind**](#GakWA)
 + **常用事件名：**
-    - `**click**` - 鼠标点击
-    - `**mousedown**` - 鼠标按下
-    - `**mouseup**` - 鼠标松开
-    - `**mousemove**` - 鼠标移动
-    - `**mouseover**` - 鼠标移入
-    - `**mouseout**` - 鼠标移出
-    - `**keyup**` - 键盘松开
-    - `**keydown**` - 键盘按下
-    - `**keypress**` - 键盘按下并输入
-    - `**submit**` - 表单提交
-    - `**focus**` - 元素获得焦点
-    - `**blur**` - 元素失去焦点
-    - `**change**` - 元素值改变
-    - `**input**` - 元素值输入
-    - `**contextmenu**` - 右键菜单
+    - `click` - 鼠标点击
+    - `mousedown` - 鼠标按下
+    - `mouseup` - 鼠标松开
+    - `mousemove` - 鼠标移动
+    - `mouseover` - 鼠标移入
+    - `mouseout` - 鼠标移出
+    - `keyup` - 键盘松开
+    - `keydown` - 键盘按下
+    - `keypress` - 键盘按下并输入
+    - `submit` - 表单提交
+    - `focus` - 元素获得焦点
+    - `blur` - 元素失去焦点
+    - `change` - 元素值改变
+    - `input` - 元素值输入
+    - `contextmenu` - 右键菜单
 
 ```vue
 <template>
@@ -197,35 +197,35 @@ console.log(data.a) // 2
 > 可以对事件进行一些特殊的处理
 >
 
-+ **语法：**`**@:事件名.修饰符="函数名"**`
-+ **说明：**修饰符可以使用多个，用点号隔开
++ **语法：**`@:事件名.修饰符="函数名"`
++ **说明：** 修饰符可以使用多个，用点号隔开
 + **常用事件修饰符：**
-    - `**.stop**`** **- 阻止事件冒泡
-    - `**.prevent**`** **- 阻止默认行为
-    - `**.capture**` - 捕获事件
-    - `**.self**` - 只当事件在该元素本身（自身）触发时触发
-    - `**.once**` - 事件只触发一次
-    - `**.passive**`  滚动事件的默认行为立即生效，不会等待事件回调执行完毕
-    - `**.native**` - 监听组件根元素的原生事件
+    - `.stop` - 阻止事件冒泡
+    - `.prevent` - 阻止默认行为
+    - `.capture` - 捕获事件
+    - `.self` - 只当事件在该元素本身（自身）触发时触发
+    - `.once` - 事件只触发一次
+    - `.passive`  滚动事件的默认行为立即生效，不会等待事件回调执行完毕
+    - `.native` - 监听组件根元素的原生事件
 + **常用按键修饰符**
-    - `**.enter**` - 回车键
-    - `**.tab**` - Tab 键
-    - `**.delete**` - 删除键
-    - `**.esc**` - Esc 键
-    - `**.space**` - 空格键
-    - `**.up**` - 上方向键
-    - `**.down**` - 下方向键
-    - `**.left**` - 左方向键
-    - `**.right**` - 右方向键
-    - `**.ctrl**` - Ctrl 键
-    - `**.alt**` - Alt 键
-    - `**.shift**` - Shift 键
+    - `.enter` - 回车键
+    - `.tab` - Tab 键
+    - `.delete` - 删除键
+    - `.esc` - Esc 键
+    - `.space` - 空格键
+    - `.up` - 上方向键
+    - `.down` - 下方向键
+    - `.left` - 左方向键
+    - `.right` - 右方向键
+    - `.ctrl` - Ctrl 键
+    - `.alt` - Alt 键
+    - `.shift` - Shift 键
 
 :::info
 **Tips：**
 
-+ 可以通过全局 `**config.keyCodes**` 对象自定义按键修饰符别名：`**Vue.config.keyCodes.f1 = 112**`，然后通过 `**@keyup.f1**`** **进行使用
-+ **鼠标按键修饰符：**`**.left**`、`**.right**`、`**.middle**`
++ 可以通过全局 `config.keyCodes` 对象自定义按键修饰符别名：`Vue.config.keyCodes.f1 = 112`，然后通过 `@keyup.f1` 进行使用
++ **鼠标按键修饰符：**`.left`、`.right`、`.middle`
 
 :::
 
@@ -253,7 +253,7 @@ console.log(data.a) // 2
 ```
 
 #### 将原生事件绑定到组件
-+ `**v-on**` 的 `**.native**` 修饰符可以监听一个组件**根元素**上的一个原生事件，`**<base-input @focus.native="onFocus"></base-input>**`
++ `v-on` 的 `.native` 修饰符可以监听一个组件**根元素**上的一个原生事件，`<base-input @focus.native="onFocus"></base-input>`
 + 有时可能达不到想要的效果，可以参考以下案例：
 
 ```vue
@@ -303,12 +303,12 @@ export default {
 >
 
 + **语法：**
-    - `**v-text="表达式"**`
-    - `**v-html="表达式"**`
-+ **区别：**`**v-html**`会解析`**HTML**`标签
+    - `v-text="表达式"`
+    - `v-html="表达式"`
++ **区别：**`v-html`会解析`HTML`标签
 + **注意：**
     - 这两个指令都会覆盖标签中的内容
-    - `**v-html**` 指令的内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译
+    - `v-html` 指令的内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译
 
 ```vue
 <template>
@@ -340,15 +340,15 @@ export default {
 >
 
 + **语法：**
-    - `**v-show="表达式"**`
-    - `**v-if="表达式"**`
+    - `v-show="表达式"`
+    - `v-if="表达式"`
 + **原理：**
-    - `**v-show**`** **是通过 CSS 属性 `**display**` 来控制元素的显示和隐藏，不管符不符合判断条件都会被渲染，有更高的初始渲染开销，频繁切换显示状态时使用
-    - `**v-if**`** **是对元素的销毁和重建，有更高的切换开销，可结合 `**v-else**` 使用，是真正的条件渲染，也是惰性的，如果初始渲染时条件为假，则什么也不做，直到条件第一次变为真时，才会开始渲染条件块。
+    - `v-show` 是通过 CSS 属性 `display` 来控制元素的显示和隐藏，不管符不符合判断条件都会被渲染，有更高的初始渲染开销，频繁切换显示状态时使用
+    - `v-if` 是对元素的销毁和重建，有更高的切换开销，可结合 `v-else` 使用，是真正的条件渲染，也是惰性的，如果初始渲染时条件为假，则什么也不做，直到条件第一次变为真时，才会开始渲染条件块。
 + **注意：**
-    - `**v-show**` 不支持 `**<template>**` 元素，也不支持 `**v-else**`
+    - `v-show` 不支持 `<template>` 元素，也不支持 `v-else`
     - 由于 Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头渲染，因此可以[用 **key** 管理可复用的元素](https://v2.cn.vuejs.org/v2/guide/conditional.html#%E7%94%A8-key-%E7%AE%A1%E7%90%86%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E5%85%83%E7%B4%A0)
-    - **不推荐**同时使用 `**v-if**` 和 `**v-for**`，因为 `**v-for**` 比 `**v-if**` 的优先级高，就会导致每次渲染列表项时，都会进行条件判断，影响性能
+    - **不推荐**同时使用 `v-if` 和 `v-for`，因为 `v-for` 比 `v-if` 的优先级高，就会导致每次渲染列表项时，都会进行条件判断，影响性能
 
 ```vue
 <template>
@@ -380,24 +380,24 @@ export default {
 > 循环遍历数组或对象，并对数组或对象的每一项进行渲染。
 >
 
-+ **语法：**`**v-for="(item, index) in items"**`
-    - `**item**` - 当前项的值
-    - `**index**` - 当前项的索引（可选）
-    - `**items**` - 要循环的数组或对象
-+ **可遍历结构：**数组、对象、字符串、数字、Set、Map、可迭代对象（如：arguments、NodeList、HTMLCollection）
-+ **说明：**可以使用 `**of**` 替代 `**in**` 作为分隔符
++ **语法：**`v-for="(item, index) in items"`
+    - `item` - 当前项的值
+    - `index` - 当前项的索引（可选）
+    - `items` - 要循环的数组或对象
++ **可遍历结构：** 数组、对象、字符串、数字、Set、Map、可迭代对象（如：arguments、NodeList、HTMLCollection）
++ **说明：** 可以使用 `of` 替代 `in` 作为分隔符
 + **注意：**
-    - 建议使用 `**v-for**` 指令时，绑定一个 `**:key**` 属性，来提高渲染性能，不要使用对象或数组之类的非基本类型值作为 `**v-for**` 的 `**key**`，请用字符串或数值类型的值。
+    - 建议使用 `v-for` 指令时，绑定一个 `:key` 属性，来提高渲染性能，不要使用对象或数组之类的非基本类型值作为 `v-for` 的 `key`，请用字符串或数值类型的值。
     - 由于 JavaScript 的限制，Vue 不能检测数组和对象的变化，Vue 对一些方法进行了包装，使用这些变更方法可以触发视图的更新
-    - **不推荐**同时使用 `**v-if**` 和 `**v-for**`，因为 `**v-for**` 比 `**v-if**` 的优先级高，就会导致每次渲染列表项时，都会进行条件判断，影响性能
+    - **不推荐**同时使用 `v-if` 和 `v-for`，因为 `v-for` 比 `v-if` 的优先级高，就会导致每次渲染列表项时，都会进行条件判断，影响性能
 + **变更方法：**
-    - `**push()**` - 添加新项到数组末尾
-    - `**pop()**` - 删除数组末尾项
-    - `**shift()**` - 删除数组首项
-    - `**unshift()**` - 添加新项到数组首部
-    - `**splice()**` - 在数组中插入或删除项
-    - `**sort()**` - 对数组进行排序
-    - `**reverse()**` - 反转数组
+    - `push()` - 添加新项到数组末尾
+    - `pop()` - 删除数组末尾项
+    - `shift()` - 删除数组首项
+    - `unshift()` - 添加新项到数组首部
+    - `splice()` - 在数组中插入或删除项
+    - `sort()` - 对数组进行排序
+    - `reverse()` - 反转数组
 
 ```vue
 <!-- 遍历数组 -->
@@ -414,12 +414,12 @@ export default {
 > 双向绑定数据，将表单输入的数据绑定到数据模型上，实现数据的双向绑定。
 >
 
-+ **语法：**`**v-model="Vue实例属性"**`
++ **语法：**`v-model="Vue实例属性"`
 + **注意：**
-    - `**v-model**` 只能用在表单元素上，如 `**input**`、`**textarea**`、`**select**` 等。
-    - `**text**` 和 `**textarea**` 元素使用 `**<font style="color:#ED740C;">value</font>**` 属性绑定数据，使用 `**<font style="color:#ED740C;">input</font>**` 事件监听数据变化。
-    - `**checkbox**` 和 `**radio**` 元素使用 `**<font style="color:#ED740C;">checked</font>**` 属性绑定数据，使用 `**<font style="color:#ED740C;">change</font>**`<font style="color:#ED740C;"> </font>事件监听数据变化
-    - `**select**` 元素使用 `**<font style="color:#ED740C;">value</font>**`<font style="color:#ED740C;"> </font>属性绑定数据，使用 `**<font style="color:#ED740C;">change</font>**` 事件监听数据变化。
+    - `v-model` 只能用在表单元素上，如 `input`、`textarea`、`select` 等。
+    - `text` 和 `textarea` 元素使用 `value` 属性绑定数据，使用 `input` 事件监听数据变化。
+    - `checkbox` 和 `radio` 元素使用 `checked` 属性绑定数据，使用 `change` 事件监听数据变化
+    - `select` 元素使用 `value` 属性绑定数据，使用 `change` 事件监听数据变化。
 
 ```vue
 <template>
@@ -477,11 +477,11 @@ export default {
 ```
 
 #### `v-model` 修饰符
-+ **语法：**`**v-model.修饰符="Vue实例属性"**`
++ **语法：**`v-model.修饰符="Vue实例属性"`
 + **修饰符：**
-    - `**.lazy**` - 仅在输入框失去焦点时更新数据
-    - `**.number**` - 将输入字符串转为数值类型，如果输入值无法被 parseFloat() 解析，则会返回原始的值
-    - `**.trim**` - 自动过滤输入首尾的空格
+    - `.lazy` - 仅在输入框失去焦点时更新数据
+    - `.number` - 将输入字符串转为数值类型，如果输入值无法被 parseFloat() 解析，则会返回原始的值
+    - `.trim` - 自动过滤输入首尾的空格
 
 ```vue
 <template>
@@ -518,7 +518,7 @@ export default {
 > v-model 其实是一种语法糖，通过绑定值和监听事件来实现双向数据绑定
 >
 
-+ **说明：**`**v-model**` 默认会绑定一个名为 `**value**` 的 prop 和一个名为 `**input**` 的事件，可以通过 `**model**` 选项进行修改
++ **说明：**`v-model` 默认会绑定一个名为 `value` 的 prop 和一个名为 `input` 的事件，可以通过 `model` 选项进行修改
 
 ```vue
 <template>
@@ -558,31 +558,31 @@ export default {
 >
 
 #### 具名插槽
-+ **语法：**`**v-slot:插槽名称**`
-+ **缩写：**`**#插槽名称**`
-+ **动态插槽名：**`**#[dynamicSlotName]**`
-+ **使用动态插槽名时的注意事项：请结合 **[**v-bind**](#GakWA)
++ **语法：**`v-slot:插槽名称`
++ **缩写：**`#插槽名称`
++ **动态插槽名：**`#[dynamicSlotName]`
++ **使用动态插槽名时的注意事项：请结合** [**v-bind**](#GakWA)
 + **注意：**
-    - 默认插槽会带有隐含的名字 `**default**`
-    - `**v-slot**`** 只能添加在 **`**<template>**`** 上**，只有一种例外情况：当被提供的内容只有默认插槽时，组件的标签才可以被当作插槽的模板来使用
+    - 默认插槽会带有隐含的名字 `default`
+    - `v-slot`**只能添加在 **`<template>`** 上**，只有一种例外情况：当被提供的内容只有默认插槽时，组件的标签才可以被当作插槽的模板来使用
 
 ```vue
-<tempalte>
-<base-layout>
-  <template #header>
-    <h1>Here might be a page title</h1>
-  </template>
+<template>
+  <base-layout>
+    <template #header>
+      <h1>Here might be a page title</h1>
+    </template>
 
-  <template #default>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
-  </template>
+    <template #default>
+      <p>A paragraph for the main content.</p>
+      <p>And another one.</p>
+    </template>
 
-  <template #footer>
-    <p>Here's some contact info</p>
-  </template>
-</base-layout>
-</tempalte>
+    <template #footer>
+      <p>Here's some contact info</p>
+    </template>
+  </base-layout>
+</template>
 
 <script>
 export default {
@@ -591,16 +591,16 @@ export default {
       template: `
         <div class="container">
           <header>
-          <slot name="header"></slot>
+            <slot name="header"></slot>
           </header>
           <main>
-          <slot>默认显示内容</slot>
+            <slot>默认显示内容</slot>
           </main>
           <footer>
-          <slot name="footer"></slot>
+            <slot name="footer"></slot>
           </footer>
-          </div>
-          `
+        </div>
+      `
     }
   }
 }
@@ -609,7 +609,7 @@ export default {
 
 #### 作用域插槽
 ```vue
-<tempalte>
+<template>
   <div>
     <current-user>
       <!-- slotProps 为包含所有插槽 prop 的对象 -->
@@ -623,7 +623,7 @@ export default {
       {{ user.lastName }}
     </current-user>
   </div>
-</tempalte>
+</template>
 
 <script>
 export default {
@@ -650,8 +650,8 @@ export default {
 
 ## `Class` 绑定
 + **语法：**
-    - `**:class="{ '类名1': 判断条件, '类名2': 判断条件, ... }"**`
-    - `**:class="['类名1', '类名2', { '类名3': 判断条件, ... }, ...]"**`
+    - `:class="{ '类名1': 判断条件, '类名2': 判断条件, ... }"`
+    - `:class="['类名1', '类名2', { '类名3': 判断条件, ... }, ...]"`
 
 ```vue
 <template>
@@ -688,8 +688,8 @@ export default {
 
 ## `Style` 绑定
 + **语法：**
-    - `**:style="{ '样式属性1': '值1', '样式属性2': '值2', ... }"**`
-    - `**:style="[{ '样式属性1': '值1', '样式属性2': '值2', ... }, ... ]"**`
+    - `:style="{ '样式属性1': '值1', '样式属性2': '值2', ... }"`
+    - `:style="[{ '样式属性1': '值1', '样式属性2': '值2', ... }, ... ]"`
 
 ```vue
 <template>
@@ -737,7 +737,7 @@ export default {
 > 计算属性是基于数据进行的计算，依赖于其他属性，并且可以返回一个新的值。
 >
 
-+ **说明：**计算属性是基于它们的响应式依赖进行缓存的，只有当它的依赖值发生改变时，才会重新求值
++ **说明：** 计算属性是基于它们的响应式依赖进行缓存的，只有当它的依赖值发生改变时，才会重新求值
 
 ```vue
 <template>
@@ -891,7 +891,7 @@ export default {
 ```
 
 ## filter - 过滤器
-> <font style="color:rgb(51, 51, 51);">过滤器就是一个</font>**<font style="color:#DF2A3F;">函数</font>**<font style="color:rgb(51, 51, 51);">，传入值返回处理后的值</font>
+> 过滤器就是一个 **<font style="color:#DF2A3F;">函数</font>**，传入值返回处理后的值
 >
 
 ### 全局注册
@@ -969,21 +969,21 @@ export default {
 >
 
 + **钩子函数：**
-    - `**bind**` - 只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
-    - `**inserted**` - 被绑定元素插入父节点时调用 (父节点存在即可调用，不必存在于 document 中)。
-    - `**update**` - 所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新。
+    - `bind` - 只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
+    - `inserted` - 被绑定元素插入父节点时调用 (父节点存在即可调用，不必存在于 document 中)。
+    - `update` - 所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新。
 + **钩子函数参数：**
-    - `**el**` - 指令所绑定的元素，可以用来直接操作 DOM。
-    - `**binding**` - 一个对象，包含以下属性：
-        * `**name**` - 指令名，不包括 `**v-**` 前缀。
-        * `**value**` - 指令的绑定值，例如 `**v-my-directive="1 + 1"**` 中，绑定值为 2。
-        * `**oldValue**` - 指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。
-        * `**expression**` - 字符串形式的指令表达式。例如 `**v-my-directive="1 + 1"**` 中，表达式为 `**"1 + 1"**`。
-        * `**arg**` - 传给指令的参数，可选。例如 `**v-my-directive:foo**` 中，参数为 `**"foo"**`。
-        * `**modifiers**` - 一个包含修饰符的对象。例如：`**v-my-directive.foo.bar**` 中，修饰符对象为 `**{ foo: true, bar: true }**`。
-    - `**vnode**` - Vue 编译生成的虚拟节点。
-    - `**oldVnode**` - 上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。
-+ **动态指令参数：**`**v-mydirective:[argument]="value"**`
+    - `el` - 指令所绑定的元素，可以用来直接操作 DOM。
+    - `binding` - 一个对象，包含以下属性：
+        * `name` - 指令名，不包括 `v-` 前缀。
+        * `value` - 指令的绑定值，例如 `v-my-directive="1 + 1"` 中，绑定值为 2。
+        * `oldValue` - 指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。
+        * `expression` - 字符串形式的指令表达式。例如 `v-my-directive="1 + 1"` 中，表达式为 `"1 + 1"`。
+        * `arg` - 传给指令的参数，可选。例如 `v-my-directive:foo` 中，参数为 `"foo"`。
+        * `modifiers` - 一个包含修饰符的对象。例如：`v-my-directive.foo.bar` 中，修饰符对象为 `{ foo: true, bar: true }`。
+    - `vnode` - Vue 编译生成的虚拟节点。
+    - `oldVnode` - 上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。
++ **动态指令参数：**`v-mydirective:[argument]="value"`
 
 ### 全局注册
 ```javascript
@@ -1030,11 +1030,11 @@ export default {
 
 ## mixin - 混入
 + **注意：**
-    1. `**data**`数据，`**methods**`方法等值为对象的选项，会被合并为同一个对象，同名则覆盖 `**mixin**`
-    2. 生命周期钩子函数，`**watch**`侦听器，`**mixin**`** **会比组件优先执行
+    1. `data`数据，`methods`方法等值为对象的选项，会被合并为同一个对象，同名则覆盖 `mixin`
+    2. 生命周期钩子函数，`watch`侦听器，`mixin` 会比组件优先执行
 
 ### 全局混入
-+ **注意：**全局混入会影响到每一个组件实例，因此要谨慎使用
++ **注意：** 全局混入会影响到每一个组件实例，因此要谨慎使用
 
 ```javascript
 const myMixin = {
@@ -1088,11 +1088,11 @@ new Vue({
 ```
 
 ## Vue 组件通信
-> vue 组件通信是**<font style="color:#DF2A3F;">单向数据流</font>**
+> vue 组件通信是 **<font style="color:#DF2A3F;">单向数据流</font>**
 >
 
 ### 父向子传值 - props
-+ **注意：**props 是只读的，不能直接修改 props 的值
++ **注意：** props 是只读的，不能直接修改 props 的值
 
 ```vue
 <template>
@@ -1133,7 +1133,7 @@ export default {
 ```
 
 #### 定制 prop 的验证方式
-+ **注意：**这些 prop 会在一个组件实例创建之前进行验证，所以实例的 property (如 `**data**`、`**computed**` 等) 在 `**default**` 或 `**validator**` 函数中是不可用的。
++ **注意：** 这些 prop 会在一个组件实例创建之前进行验证，所以实例的 property (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。
 
 ```javascript
 Vue.component('my-component', {
@@ -1173,8 +1173,8 @@ Vue.component('my-component', {
 
 #### 禁用 Attribute 继承
 + **注意：**
-    - 如果子组件没有定义父组件传过来的 prop，则这个属性会被当做 attribute 添加到组件的根元素上，如果恰好传入的 attribute 和一个已有的 attribute 名称相同，则会覆盖掉已有的 attribute（`**class**`** 和 **`**style**`** 除外**）
-    - `**inheritAttrs: false**` 选项**不会**影响 `**style**` 和 **class** 的绑定
+    - 如果子组件没有定义父组件传过来的 prop，则这个属性会被当做 attribute 添加到组件的根元素上，如果恰好传入的 attribute 和一个已有的 attribute 名称相同，则会覆盖掉已有的 attribute（**`class` 和 `style` 除外**）
+    - `inheritAttrs: false` 选项**不会**影响 `style` 和 **class** 的绑定
 
 ```vue
 <template>
@@ -1424,11 +1424,11 @@ export default {
 ```
 
 ### `provide / inject` - 依赖注入
-+ **注意：**依赖注入这种方式提供的属性不是响应式的
++ **注意：** 依赖注入这种方式提供的属性不是响应式的
 
-`**provide**`
+`provide`
 
-> <font style="color:rgb(119, 119, 119);">为后代组件提供数据或方法</font>
+> 为后代组件提供数据或方法
 >
 
 ```vue
@@ -1445,9 +1445,9 @@ export default {
 </script>
 ```
 
-`**inject**`
+`inject`
 
-> 在任何后代组件中，都可以使用 `**inject**`** **选项来接收指定的属性添加到组件实例上
+> 在任何后代组件中，都可以使用 `inject` 选项来接收指定的属性添加到组件实例上
 >
 
 ```vue
@@ -1487,7 +1487,7 @@ export default {
 > 动态渲染组件
 >
 
-+ 根据 `**is**` 的值，来决定渲染哪个组件
++ 根据 `is` 的值，来决定渲染哪个组件
 
 ```vue
 <!-- 动态组件由 vm 实例的 `componentId` property 控制 -->
@@ -1502,16 +1502,16 @@ export default {
 >
 
 + **属性：**
-    - `**include**` - 缓存的组件名，支持正则表达式
-    - `**exclude**` - 排除缓存的组件名，支持正则表达式
-    - `**max**` - 最大缓存数
+    - `include` - 缓存的组件名，支持正则表达式
+    - `exclude` - 排除缓存的组件名，支持正则表达式
+    - `max` - 最大缓存数
 + **生命周期：**
-    - `**activated**` - 组件激活时触发
-    - `**deactivated**` - 组件失活时触发
+    - `activated` - 组件激活时触发
+    - `deactivated` - 组件失活时触发
 + **说明：**
-    - `**include**` 和 `**exclude**` 匹配首先检查组件自身的 `**name**` 选项，如果 `**name**` 选项不可用，则匹配它的局部注册名称 (父组件 `**components**` 选项的键值)。匿名组件不能被匹配
-    - `**max**` 最多可以缓存多少组件实例。一旦这个数字达到了，在新实例被创建之前，已缓存组件中最久没有被访问的实例会被销毁掉
-+ **注意：**`**<keep-alive>**` 不会在函数式组件中正常工作，因为它们没有缓存实例。
+    - `include` 和 `exclude` 匹配首先检查组件自身的 `name` 选项，如果 `name` 选项不可用，则匹配它的局部注册名称 (父组件 `components` 选项的键值)。匿名组件不能被匹配
+    - `max` 最多可以缓存多少组件实例。一旦这个数字达到了，在新实例被创建之前，已缓存组件中最久没有被访问的实例会被销毁掉
++ **注意：**`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。
 
 ```html
 <!-- 基本 -->
@@ -1557,14 +1557,14 @@ export default {
 >
 
 #### CSS 类名
-+ `**v-enter**` - 进入的开始状态
-+ `**v-enter-active**` - 进入的过程状态
-+ `**v-enter-to**` - 进入的结束状态
++ `v-enter` - 进入的开始状态
++ `v-enter-active` - 进入的过程状态
++ `v-enter-to` - 进入的结束状态
 + ----------------------------------
-+ `**v-leave**` - 离开的开始状态
-+ `**v-leave-active**` - 离开的过程状态
-+ `**v-leave-to**` - 离开的结束状态
-+ **注意：**如果 `**<transition>**` 组件没有指定 `**name**` 属性，则 `**v-**` 会是这些类名的默认前缀。如果你使用了 `**<transition name="my-transition">**`，那么 `**v-enter**` 会替换为 `**my-transition-enter**`
++ `v-leave` - 离开的开始状态
++ `v-leave-active` - 离开的过程状态
++ `v-leave-to` - 离开的结束状态
++ **注意：** 如果 `<transition>` 组件没有指定 `name` 属性，则 `v-` 会是这些类名的默认前缀。如果你使用了 `<transition name="my-transition">`，那么 `v-enter` 会替换为 `my-transition-enter`
 
 ```vue
 <template>
@@ -1598,15 +1598,15 @@ export default {
 ```
 
 #### JS 钩子
-+ `**beforeEnter**` - 进入动画开始之前的钩子函数
-+ `**enter**` - 进入动画开始的钩子函数
-+ `**afterEnter**` - 进入动画结束之后的钩子函数
-+ `**enterCancelled**` - 进入动画取消的钩子函数
++ `beforeEnter` - 进入动画开始之前的钩子函数
++ `enter` - 进入动画开始的钩子函数
++ `afterEnter` - 进入动画结束之后的钩子函数
++ `enterCancelled` - 进入动画取消的钩子函数
 + ----------------------------------------------
-+ `**beforeLeave**` - 离开动画开始之前的钩子函数
-+ `**leave**` - 离开动画开始的钩子函数
-+ `**afterLeave**` - 离开动画结束之后的钩子函数
-+ `**leaveCancelled**` - 离开动画取消的钩子函数
++ `beforeLeave` - 离开动画开始之前的钩子函数
++ `leave` - 离开动画开始的钩子函数
++ `afterLeave` - 离开动画结束之后的钩子函数
++ `leaveCancelled` - 离开动画取消的钩子函数
 
 ```vue
 <template>
@@ -1705,7 +1705,7 @@ const AsyncComponent = () => ({
 ```
 
 ## 递归组件
-+ **注意：**如果组件之间存在循环引用，在注册组件时需要使用 `**webpack**` 的异步 `**import**`，否则可能会报错，如果通过 `**Vue.component**` 全局注册组件时，则不需要这么做
++ **注意：** 如果组件之间存在循环引用，在注册组件时需要使用 `webpack` 的异步 `import`，否则可能会报错，如果通过 `Vue.component` 全局注册组件时，则不需要这么做
 
 _**TreeFolder.vue**_
 
@@ -1735,7 +1735,7 @@ export default {
 
 _**TreeFolderContents.vue**_
 
-```java
+```vue
 <template>
   <ul>
     <li v-for="child in children" :key="child.id">
@@ -1983,7 +1983,7 @@ props: {
 ```
 
 ### 为组件样式设置作用域
-+ `**scoped**`** 属性的作用原理：在编译过程中，Vue 会给每个组件的样式添加一个 **`**data-v-哈希值**`** 的标识符，然后通过选择器加上这个标识符，这样就实现了只对当前组件的样式生效，防止样式冲突**
++ `scoped` 属性的作用原理：在编译过程中，Vue 会给每个组件的样式添加一个 `data-v-哈希值` 的标识符，然后通过选择器加上这个标识符，这样就实现了只对当前组件的样式生效，防止样式冲突
 
 ```vue
 <template>
@@ -2130,7 +2130,7 @@ export default {
 ```
 
 ### [vm.$watch](https://v2.cn.vuejs.org/v2/api/#vm-watch)
-+ **注意：**在变更 (不是替换) 对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变更之前值的副本。
++ **注意：** 在变更 (不是替换) 对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变更之前值的副本。
 
 ```javascript
 // 键路径
@@ -2185,7 +2185,7 @@ var unwatch = vm.$watch(
 > 向响应式对象中添加一个 property，并确保这个新 property 同样是响应式的，且触发视图更新。
 >
 
-+ **注意：**对象不能是 Vue 实例，或者 Vue 实例的根数据对象
++ **注意：** 对象不能是 Vue 实例，或者 Vue 实例的根数据对象
 
 ```vue
 <template>
