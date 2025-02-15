@@ -37,7 +37,10 @@ export default defineConfig({
             { text: 'Mock.js', link: '/前端笔记/Mock.js.md' },
             { text: 'SVG', link: '/前端笔记/SVG.md' },
             { text: 'Canvas', link: '/前端笔记/Canvas.md' },
-            { text: 'Vue 2', link: '/前端笔记/Vue 2.md' }
+            { text: 'Vue 2', link: '/前端笔记/Vue 2.md' },
+            { text: 'Vue 3', link: '/前端笔记/Vue 3.md' },
+            { text: 'VueUse', link: '/前端笔记/VueUse.md' },
+            { text: 'Vue Router 3', link: '/前端笔记/Vue Router 3.md' }
           ]
         }
       ],
