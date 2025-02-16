@@ -39,7 +39,7 @@ const app = new Vue({
 ```
 
 ## 动态路由
-+ 一个“路径参数”使用冒号 `**:**` 标记。当匹配到一个路由时，参数值会被设置到 `**this.$route.params**`，可以在每个组件内使用。
++ 一个“路径参数”使用冒号 `:` 标记。当匹配到一个路由时，参数值会被设置到 `this.$route.params`，可以在每个组件内使用。
 
 ```javascript
 const User = {
@@ -68,8 +68,8 @@ const router = new VueRouter({
 })
 ```
 
-+ 通配符（`*****`）可以匹配任意路径
-+ **注意：**为了确保路由正确匹配，含有_通配符_的路由应该放在最后
++ 通配符（`*`）可以匹配任意路径
++ **注意：** 为了确保路由正确匹配，含有 _通配符_ 的路由应该放在最后
 
 ```javascript
 {
@@ -83,7 +83,7 @@ const router = new VueRouter({
 }
 ```
 
-+ 当使用一个_通配符_时，`**$route.params**` 内会自动添加一个名为 `**pathMatch**` 参数。它表示被通配符匹配的部分
++ 当使用一个 _通配符_ 时，`$route.params` 内会自动添加一个名为 `pathMatch` 参数。它表示被通配符匹配的部分
 
 ```javascript
 // 给出一个路由 { path: '/user-*' }
@@ -95,7 +95,7 @@ this.$route.params.pathMatch // '/non-existing'
 ```
 
 ## 嵌套路由
-+ **注意：**以 `**/**` 开头的嵌套路径会被当作根路径
++ **注意：** 以 `/` 开头的嵌套路径会被当作根路径
 
 ```vue
 <div id="app">
@@ -148,7 +148,7 @@ const router = new VueRouter({
 ```
 
 ## 声明式导航
-+ 当点击 `**<router-link>**`** **时，其方法内部会调用 `**router.push**`，`**replace**` prop为 `**true**` 时，则会调用 `**router.replace**`
++ 当点击 `<router-link>` 时，其方法内部会调用 `router.push`，`replace` prop为 `true` 时，则会调用 `router.replace`
 
 ```vue
 <router-link :to="...">User</router-link>
@@ -160,7 +160,7 @@ const router = new VueRouter({
 
 ## 编程式导航
 ### router.push()
-+ `**router.push**` 方法会向 history 栈添加一个新的记录
++ `router.push` 方法会向 history 栈添加一个新的记录
 
 ```javascript
 // 字符串
@@ -176,7 +176,7 @@ router.push({ name: 'user', params: { userId: '123' }})
 router.push({ path: 'register', query: { plan: 'private' }})
 ```
 
-+ **注意：如果提供了 **`**path**`**，**`**params**`** 会被忽略**
++ **注意：如果提供了 `path`，`params`会被忽略**
 
 ```javascript
 const userId = '123'
@@ -208,7 +208,7 @@ router.go(100)
 ```
 
 ## 命名视图
-> 同时（同级）展示多个视图，就需要给 `**router-view**`** **设置名字，没有设置名字的默认为 `**default**`
+> 同时（同级）展示多个视图，就需要给 `router-view` 设置名字，没有设置名字的默认为 `default`
 >
 
 ```html
@@ -267,7 +267,7 @@ const router = new VueRouter({
 ```
 
 ## 路由别名
-+ `**/a**` 的别名是 `**/b**`，意味着，当用户访问 `**/b**` 时，URL 会保持为 `**/b**`，但是路由匹配则为 `**/a**`，就像用户访问 `**/a**` 一样。
++ `/a` 的别名是 `/b`，意味着，当用户访问 `/b` 时，URL 会保持为 `/b`，但是路由匹配则为 `/a`，就像用户访问 `/a` 一样。
 
 ```javascript
 const router = new VueRouter({

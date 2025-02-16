@@ -60,11 +60,11 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   z-index: 9999;
 }
 
-.VPSwitchAppearance {
+/* .VPSwitchAppearance {
   width: 22px !important;
 }
 
 .VPSwitchAppearance .check {
   transform: none !important;
-}
+} */
 </style>

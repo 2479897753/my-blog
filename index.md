@@ -8,18 +8,21 @@ hero:
   tagline: 快速上手前端开发 & 了解前端技术栈
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Vue 3 开发指南
+      link: /前端笔记/Vue 3
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: 开发技巧
+      link: /开发技巧/前端开发技巧
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: VueUse
+    details: Vue 组合式工具集
+    link: /前端笔记/VueUse
+  - title: UnoCSS
+    details: 即时按需原子 CSS 引擎
+    link: /前端笔记/UnoCSS
+  - title: ECharts
+    details: 一个基于 JavaScript 的开源可视化图表库
+    link: /前端笔记/ECharts%20常用配置
 ---
 
