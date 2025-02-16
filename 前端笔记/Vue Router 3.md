@@ -434,10 +434,10 @@ const router = new VueRouter({
 ```
 
 ## 路由模式
-> vue-router 默认是 hash 模式，可以设置路由为 history 模式，该模式是利用 `**history.pushState**` API 来完成 URL 跳转而无须重新加载页面
+> vue-router 默认是 hash 模式，可以设置路由为 history 模式，该模式是利用 `history.pushState` API 来完成 URL 跳转而无须重新加载页面
 >
 
-+ **注意：**history 模式，使用时需要后台配置支持
++ **注意：** history 模式，使用时需要后台配置支持
 
 ```javascript
 const router = new VueRouter({
@@ -448,15 +448,15 @@ const router = new VueRouter({
 
 ## 导航守卫
 ### 全局前置守卫 - beforeEach
-+ **注意：确保 **`**next**`** 函数在任何给定的导航守卫中都被严格调用一次。**
++ **注意：确保 **`next`** 函数在任何给定的导航守卫中都被严格调用一次。**
 + **参数：**
-    - `**to**` - 即将要进入的目标路由对象
-    - `**fro**`** **-** **当前导航正要离开的路由对象
-    - `**next**` - 一个函数，一定要调用该函数来 resolve 这个钩子。执行效果依赖 `**next**` 函数的调用参数。
-        * `**next()**` - 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就被确认，浏览器地址栏才会发生跳转。
-        * `**next(false)**` - 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么导航会停止。
-        * `**next(path)**` - 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。
-        * `**next(error)**` - 如果传入了一个错误对象，则导航会停止且错误会被传递给 router.onError() 注册过的回调。
+    - `to` - 即将要进入的目标路由对象
+    - `from` - 当前导航正要离开的路由对象
+    - `next` - 一个函数，一定要调用该函数来 resolve 这个钩子。执行效果依赖 `next` 函数的调用参数。
+        * `next()` - 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就被确认，浏览器地址栏才会发生跳转。
+        * `next(false)` - 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么导航会停止。
+        * `next(path)` - 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。
+        * `next(error)` - 如果传入了一个错误对象，则导航会停止且错误会被传递给 router.onError() 注册过的回调。
 
 ```javascript
 // 错误
@@ -548,11 +548,11 @@ const Foo = {
 12. 调用 beforeRouteEnter 守卫中传给 next 的回调函数，创建好的组件实例会作为回调函数的参数传入。
 
 ## 导航故障
-+ `**NavigationFailureType**` 有四种不同的类型：
-    - `**redirected**` - 在导航守卫中调用了 `**next(newLocation)**` 重定向到了其他地方
-    - `**aborted**` - 在导航守卫中调用了 `**next(false)**` 中断了本次导航
-    - `**cancelled**` - 在当前导航还没有完成之前又有了一个新的导航。比如，在等待导航守卫的过程中又调用了 `**router.push**`
-    - `**duplicated**` - 导航被阻止，因为我们已经在目标位置了
++ `NavigationFailureType` 有四种不同的类型：
+    - `redirected` - 在导航守卫中调用了 `next(newLocation)` 重定向到了其他地方
+    - `aborted` - 在导航守卫中调用了 `next(false)` 中断了本次导航
+    - `cancelled` - 在当前导航还没有完成之前又有了一个新的导航。比如，在等待导航守卫的过程中又调用了 `router.push`
+    - `duplicated` - 导航被阻止，因为我们已经在目标位置了
 
 ```javascript
 import VueRouter from 'vue-router'
@@ -599,7 +599,7 @@ router.push('/admin').catch(failure => {
 ```
 
 ### `<router-view>`
-> `**<router-view>**` 组件是一个 functional 组件，渲染路径匹配到的视图组件
+> `<router-view>` 组件是一个 functional 组件，渲染路径匹配到的视图组件
 >
 
 + 具体用法可查看：[命名视图](#ymoRp)
