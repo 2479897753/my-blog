@@ -3033,5 +3033,202 @@ export default {
 ```
 
 ## TypeScript
+### 为 `props` 标注类型
+```vue
+<script setup lang="ts">
+const props = defineProps<{
+  foo: string
+  bar?: number
+}>()
+// 等价于
+// const props = defineProps({
+//   foo: {
+//     type: String,
+//     required: true
+//   },
+//   bar: Number
+// })
+
+// Props 解构默认值
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+const { msg = 'hello', labels = ['one', 'two'] } = defineProps<Props>()
+// 在 3.4 及更低版本
+// const props = withDefaults(defineProps<Props>(), {
+//   msg: 'hello',
+//   labels: () => ['one', 'two']
+// })
+
+// 复杂的 prop 类型
+interface Book {
+  title: string
+  author: string
+  year: number
+}
+const props = defineProps<{
+  book: Book
+}>()
+</script>
+```
+
+### 为 `emits` 标注类型
+```vue
+<script setup lang="ts">
+// 运行时
+const emit = defineEmits(['change', 'update'])
+
+// 编译时
+const emit = defineEmits<{
+  change: [id: number]
+  update: [value: string]
+}>()
+// 在 3.3 之前版本
+// const emit = defineEmits<{
+//   (e: 'change', id: number): void
+//   (e: 'update', value: string): void
+// }>()
+// 等价于
+// const emit = defineEmits({
+//   change: (id: number) => {
+//     // 返回 `true` 或 `false`
+//     // 表明验证通过或失败
+//   },
+//   update: (value: string) => {
+//     // 返回 `true` 或 `false`
+//     // 表明验证通过或失败
+//   }
+// })
+</script>
+```
+
+### 为 `ref()` 标注类型
+```typescript
+import { ref } from 'vue'
+import type { Ref } from 'vue'
+
+// 推导出的类型：Ref<number>
+const year = ref(2020)
+year.value = '2020' // => TS Error: Type 'string' is not assignable to type 'number'.
+
+// 显式声明类型：Ref<string | number>
+const year: Ref<string | number> = ref('2020')
+year.value = 2020 // 成功！
+
+// 传入泛型参数：Ref<string | number>
+const year = ref<string | number>('2020')
+year.value = 2020 // 成功！
+
+// 如果指定了一个泛型参数但没有传入初始值，那么就会得到一个包含 undefined 的联合类型
+// 推导得到的类型：Ref<number | undefined>
+const n = ref<number>()
+```
+
+### 为 `reactive()` 标注类型
++ **注意：**不推荐使用 `**reactive()**` 的泛型参数，因为处理了深层次 ref 解包的返回值与泛型参数的类型不同
+
+```typescript
+import { reactive } from 'vue'
+
+// 推导得到的类型：{ title: string }
+const book = reactive({ title: 'Vue 3 指引' })
+
+interface Book {
+  title: string
+  year?: number
+}
+// 显式指定类型
+const book: Book = reactive({ title: 'Vue 3 指引' })
+```
+
+### 为 `computed()` 标注类型
+```typescript
+import { ref, computed } from 'vue'
+
+const count = ref(0)
+
+// 推导得到的类型：ComputedRef<number>
+const double = computed(() => count.value * 2)
+const result = double.value.split('') // => TS Error: Property 'split' does not exist on type 'number'
+
+// 通过泛型指定返回值类型
+const double = computed<number>(() => {
+  // 若返回值不是 number 类型则会报错
+})
+```
+
+### 为 事件处理函数 标注类型
+```vue
+<script setup lang="ts">
+// function handleChange(event) {
+//   // `event` 隐式地标注为 `any` 类型
+//   console.log(event.target.value)
+// }
+
+// 通过事件类型标注 `event` 参数
+function handleChange(event: Event) {
+  // 使用类型断言来访问 `value` 属性
+  console.log((event.target as HTMLInputElement).value)
+}
+</script>
+
+<template>
+  <input type="text" @change="handleChange" />
+</template>
+```
+
+### 为 `provide` / `inject` 标注类型
+```typescript
+import { provide, inject } from 'vue'
+import type { InjectionKey } from 'vue'
+
+// InjectionKey 是 Vue 提供的一个接口，继承自 Symbol 的泛型类型
+const key = Symbol() as InjectionKey<string>
+provide(key, 'foo') // 若提供的是非字符串值会导致错误
+const foo = inject(key) // foo 的类型：string | undefined
+
+// 使用字符串注入 key 时，注入值的类型是 unknown，需要手动指定类型
+const foo = inject<string>('foo') // 类型：string | undefined
+
+// 提供默认值，注入值的类型是默认值的类型
+const foo = inject<string>('foo', 'bar') // 类型：string
+
+// 如果确定该值始终被提供，可以使用 as 断言
+const foo = inject('foo') as string
+```
+
+### 为 模板引用 标注类型
++ **注意：**为了严格的类型安全，有必要在访问 `**el.value**` 时使用可选链或类型守卫
+
+```typescript
+// 在无法自动推断类型的情况下，可以使用泛型来指定类型
+const el = useTemplateRef<HTMLInputElement>('el')
+```
+
+### 为 组件模板引用 标注类型
+```vue
+<!-- App.vue -->
+<script setup lang="ts">
+import { useTemplateRef } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
+import Foo from './Foo.vue'
+import Bar from './Bar.vue'
+
+// 获取组件实例类型，先通过 typeof 获取构造函数类型，再通过 InstanceType 获取实例类型
+type FooType = InstanceType<typeof Foo>
+type BarType = InstanceType<typeof Bar>
+
+const compRef = useTemplateRef<FooType | BarType>('comp')
+
+// 如果组件是动态的或者你并不关心具体的类型，你可以使用 ComponentPublicInstance
+// 它只会包含所有组件实例的公共属性和方法，比如 $el, $props, $emit 等
+const child = useTemplateRef<ComponentPublicInstance>('child')
+</script>
+
+<template>
+  <component :is="Math.random() > 0.5 ? Foo : Bar" ref="comp" />
+</template>
+```
 
 
