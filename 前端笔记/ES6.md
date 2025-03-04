@@ -691,7 +691,7 @@ console.log(`The word "${word}" ${sentence.includes(word) ? 'is' : 'is not'} in 
 + **语法：**`str.startsWith(searchString[, position])`
 + **参数：**
     - `searchString` - 要搜索的字符串
-    - `position` - 可选，搜索的起始位置，默认为0
+    - `position` - 可选，搜索的起始位置，默认为 0
 + **返回值：** 布尔值
 
 ```javascript
@@ -725,17 +725,17 @@ console.log(str2.endsWith('question')) // false
 ```
 
 #### String.prototype.repeat()
-> 返回一个新字符串，表示将原字符串重复count次
+> 返回一个新字符串，表示将原字符串重复 count 次
 >
 
 + **语法：**`str.repeat(count)`
 + **参数：**`count` - 表示重复次数
-+ **返回值：** 返回一个新字符串，表示将原字符串重复`count`次
++ **返回值：** 返回一个新字符串，表示将原字符串重复 `count` 次
 
 ```javascript
 const mood = 'Happy! '
 
-console.log(`I feel ${mood.repeat(3)}`) // 'I feel Happy! Happy! Happy!'
+console.log(`I feel ${mood.repeat(3)}`) // 'I feel Happy! Happy! Happy! '
 ```
 
 #### String.prototype.padStart()
@@ -813,7 +813,7 @@ console.log(greeting.trimEnd()) // '   Hello world!'
 ```
 
 #### String.prototype.replaceAll()
-> 返回一个新字符串，该字符串是通过使用指定的替换字符串或函数替换与正则表达式或字符串匹配的子字符串的所有匹配项而生成的
+> 替换所有匹配的字符串
 >
 
 + **语法：**`str.replaceAll(regexp|substr, newSubStr|function)`
