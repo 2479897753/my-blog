@@ -113,7 +113,7 @@ const sum = (num1, num2) => num1 + num2
 function fn(v) {
   return v
 }
-//es6写法
+// es6 写法
 const fn = v => v
 ```
 
