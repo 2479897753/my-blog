@@ -383,8 +383,8 @@ console.log(p.totalPrice)
 
 + **语法：**`arr.includes(valueToFind[, fromIndex])`
 + **参数：**
-    - valueToFind 需要查找的元素
-    - fromIndex 可选，从哪个索引开始查找，默认为 `0`
+    - `valueToFind` - 需要查找的元素
+    - `fromIndex` - 可选，从哪个索引开始查找，默认为 `0`
 + **返回值：** 布尔值，`true`表示包含，`false`表示不包含
 
 ```javascript
@@ -404,7 +404,7 @@ console.log(pets.includes('at')) // false
 >
 
 + **语法：**`arr.flat([depth])`
-+ **参数：**`depth` 是一个非负整数，表示要提取嵌套数组的结构深度，默认值是`1`
++ **参数：**`depth` - 是一个非负整数，表示要提取嵌套数组的结构深度，默认值是`1`
 + **返回值：** 一个包含提取出的新元素的数组
 
 ```javascript
@@ -422,16 +422,16 @@ console.log(arr2.flat(Infinity)) // [0, 1, 2, 3, 4, 5]
 ```
 
 #### Array.prototype.flatMap()
-> flatMap() 方法首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。它与 map 连着深度值为1的 flat 几乎相同，但 flatMap 通常在合并成一种方法的效率稍微高一些。
+> `flatMap()` 方法首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。它与 map 连着深度值为1的 flat 几乎相同，但 flatMap 通常在合并成一种方法的效率稍微高一些。
 >
 
 + **语法：**`arr.flatMap(callback(currentValue[, index[, array]])[, thisArg])`
 + **参数：**
-    - `callback` 生成新数组元素的函数，使用三个参数：
-        * `currentValue` 数组中正在处理的当前元素。
-        * `index` 数组中正在处理的当前元素的索引。
-        * `array` 调用了 `map` 的数组。
-    - `thisArg` 执行回调函数时使用的 `this` 值。
+    - `callback` - 生成新数组元素的函数，使用三个参数：
+        * `currentValue` - 数组中正在处理的当前元素。
+        * `index` - 数组中正在处理的当前元素的索引。
+        * `array` - 调用了 `map` 的数组。
+    - `thisArg` - 执行回调函数时使用的 `this` 值。
 + **返回值：** 一个新的数组，其中每个元素都是回调函数的结果，并且（由于使用了 `flat`）已被压扁。
 
 ```javascript
@@ -448,9 +448,9 @@ console.log(result) // [1, 2, 2, 1]
 
 + **语法：**`arr.fill(value[, start[, end]])`
 + **参数：**
-    - `value` 填充数组元素的值
-    - `start` 起始索引，默认为 `0`
-    - `end` 终止索引，默认为 `arr.length`
+    - `value` - 填充数组元素的值
+    - `start` - 起始索引，默认为 `0`
+    - `end` - 终止索引，默认为 `arr.length`
 + **返回值：** 填充后的数组
 
 ```javascript
@@ -531,13 +531,13 @@ for (const value of iterator) {
 > 返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
 >
 
-+ **语法：** arr.find(callback[, thisArg])
++ **语法：** `arr.find(callback[, thisArg])`
 + **参数：**
-    - `callback` 在数组每一项上执行的函数，接收三个参数：
-        * `element` 当前元素
-        * `index` 当前元素的索引
-        * `array` 调用 `find` 的数组
-    - `thisArg` 执行 `callback` 时使用的 `this` 值
+    - `callback` - 在数组每一项上执行的函数，接收三个参数：
+        * `element` - 当前元素
+        * `index` - 当前元素的索引
+        * `array` - 调用 `find` 的数组
+    - `thisArg` - 执行 `callback` 时使用的 `this` 值
 + **返回值：** 数组中满足测试函数的第一个元素的值，否则返回 `undefined`
 
 ```javascript
@@ -554,11 +554,11 @@ console.log(found) // 12
 
 + **语法：**`arr.findIndex(callback[, thisArg])`
 + **参数：**
-    - `callback` 用来测试每个元素的函数，接收三个参数：
-        * `element` 当前元素
-        * `index` 当前元素的索引
-        * `array` 调用 `findIndex` 的数组
-    - `thisArg` 执行 `callback` 时的 `this` 值
+    - `callback` - 用来测试每个元素的函数，接收三个参数：
+        * `element` - 当前元素
+        * `index` - 当前元素的索引
+        * `array` - 调用 `findIndex` 的数组
+    - `thisArg` - 执行 `callback` 时的 `this` 值
 + **返回值：** 数组中满足提供的测试函数的第一个元素的索引。否则返回`-1`。
 
 ```javascript
@@ -575,9 +575,9 @@ console.log(array1.findIndex(isLargeNumber)) // 3
 
 + **语法：**`Array.from(arrayLike[, mapFn[, thisArg]])`
 + **参数：**
-    - `arrayLike` 类似数组或可迭代对象
-    - `mapFn` 可选参数，如果指定了该参数，则最后生成的数组会经过该函数的处理
-    - `thisArg` 可选参数，执行 `mapFn` 函数时 `this` 的值
+    - `arrayLike` - 类似数组或可迭代对象
+    - `mapFn` - 可选参数，如果指定了该参数，则最后生成的数组会经过该函数的处理
+    - `thisArg` - 可选参数，执行 `mapFn` 函数时 `this` 的值
 + **返回值：** 一个新的数组实例
 
 ```javascript
@@ -591,7 +591,7 @@ console.log(Array.from([1, 2, 3], x => x + x)) // [2, 4, 6]
 >
 
 + **语法：**`Array.of(element0[, element1[, ...[, elementN]]])`
-+ **参数：**`elementN` 任意个参数，将按顺序成为新数组中的元素。
++ **参数：**`elementN` - 任意个参数，将按顺序成为新数组中的元素。
 + **返回值：** 一个新的 Array 实例。
 
 ```javascript
@@ -606,10 +606,11 @@ console.log(Array.of()) // []
 
 + **语法：**`arr.copyWithin(target, start, end)`
 + **参数：**
-    - `target` 必需，从该位置开始替换数据
-    - `start` 可选，从该位置开始读取数据，默认为`0`。如果为负值，表示倒数
-    - `end` 可选，到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数
+    - `target` - 必需，从该位置开始替换数据
+    - `start` - 可选，从该位置开始读取数据，默认为`0`。如果为负值，表示倒数
+    - `end` - 可选，到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数
 + **返回值：** 修改后的数组
++ **注意：** 该方法会<font style="color: #df2a3f">**改变原数组**</font>
 
 ```javascript
 const array1 = ['a', 'b', 'c', 'd', 'e']
@@ -627,11 +628,11 @@ console.log(array1.copyWithin(1, 3)) // ['d', 'd', 'e', 'd', 'e']
 
 + **语法：**`arr.some(callback(element[, index[, array]])[, thisArg])`
 + **参数：**
-    - `callback` 用来测试每个元素的函数，接受三个参数
-        * `element` 数组中当前正在处理的元素
-        * `index` 数组中当前正在处理的元素的索引
-        * `array` 调用 `some` 方法的数组
-    - `thisArg` 执行 `callback` 时使用的 `this` 值
+    - `callback` - 用来测试每个元素的函数，接受三个参数
+        * `element` - 数组中当前正在处理的元素
+        * `index` - 数组中当前正在处理的元素的索引
+        * `array` - 调用 `some` 方法的数组
+    - `thisArg` - 执行 `callback` 时使用的 `this` 值
 + **返回值：** 如果回调函数对任何数组元素返回 `true`，则返回 `true`，否则返回 `false`
 
 ```javascript
@@ -649,11 +650,11 @@ console.log(array.some(even)) // true
 
 + **语法：**`arr.every(callback[, thisArg])`
 + **参数：**
-    - `callback` 用来测试每个元素的函数，接受三个参数：
-        *   `currentValue` 当前元素的值
-        *   `index` 当前元素的索引
-        *   `array` 调用 `every` 方法的数组
-    - `thisArg` 执行 `callback` 时使用的 `this` 值
+    - `callback` - 用来测试每个元素的函数，接受三个参数：
+        *   `currentValue` - 当前元素的值
+        *   `index` - 当前元素的索引
+        *   `array` - 调用 `every` 方法的数组
+    - `thisArg` - 执行 `callback` 时使用的 `this` 值
 + **返回值：** 如果数组中的每个元素都满足条件，则返回 `true`，否则返回 `false`
 
 ```javascript
@@ -689,8 +690,8 @@ console.log(`The word "${word}" ${sentence.includes(word) ? 'is' : 'is not'} in 
 
 + **语法：**`str.startsWith(searchString[, position])`
 + **参数：**
-    - `searchString` 要搜索的字符串
-    - `position` 可选，搜索的起始位置，默认为0
+    - `searchString` - 要搜索的字符串
+    - `position` - 可选，搜索的起始位置，默认为0
 + **返回值：** 布尔值
 
 ```javascript
@@ -707,8 +708,8 @@ console.log(str1.startsWith('Sat', 3)) // false
 
 + **语法：**`str.endsWith(searchString[, length])`
 + **参数：**
-    - `searchString` 要搜索的字符串
-    - `length` 可选，用于指定字符串的长度
+    - `searchString` - 要搜索的字符串
+    - `length` - 可选，用于指定字符串的长度
 + **返回值：** 布尔值
 
 ```javascript
@@ -728,7 +729,7 @@ console.log(str2.endsWith('question')) // false
 >
 
 + **语法：**`str.repeat(count)`
-+ **参数：**`count` 表示重复次数
++ **参数：**`count` - 表示重复次数
 + **返回值：** 返回一个新字符串，表示将原字符串重复`count`次
 
 ```javascript
@@ -743,8 +744,8 @@ console.log(`I feel ${mood.repeat(3)}`) // 'I feel Happy! Happy! Happy!'
 
 + **语法：**`str.padStart(targetLength [, padString])`
 + **参数：**
-    - `targetLength` 当前字符串应该达到的长度。如果这个数值小于当前字符串的长度，则返回当前字符串本身。
-    - `padString` （可选）填充字符串。默认是空格。
+    - `targetLength` - 当前字符串应该达到的长度。如果这个数值小于当前字符串的长度，则返回当前字符串本身。
+    - `padString` - （可选）填充字符串。默认是空格。
 + **返回值：** 一个新的字符串，表示用另一个字符串填充后的当前字符串。
 
 ```javascript
@@ -765,8 +766,8 @@ console.log(maskedNumber) // '************5581'
 
 + **语法：**`str.padEnd(targetLength [, padString])`
 + **参数：**
-    - `targetLength` 当前字符串应该达到的长度。如果这个数值小于当前字符串的长度，则返回当前字符串本身。
-    - `padString` （可选）填充字符串。默认是空格。
+    - `targetLength` - 当前字符串应该达到的长度。如果这个数值小于当前字符串的长度，则返回当前字符串本身。
+    - `padString` - （可选）填充字符串。默认是空格。
 + **返回值：** 一个新的字符串，表示用另一个字符串填充后的当前字符串。
 
 ```javascript
@@ -817,8 +818,8 @@ console.log(greeting.trimEnd()) // '   Hello world!'
 
 + **语法：**`str.replaceAll(regexp|substr, newSubStr|function)`
 + **参数：**
-    - `regexp|substr` 一个`RegExp`对象或者一个要被替换的字符串
-    - `newSubStr|function` 一个要被插入到新字符串中的字符串，或者一个要替换的函数
+    - `regexp|substr` - 一个`RegExp`对象或者一个要被替换的字符串
+    - `newSubStr|function` - 一个要被插入到新字符串中的字符串，或者一个要替换的函数
 + **返回值：** 一个新的字符串，是通过替换所有匹配的子字符串而生成的
 
 ```javascript
@@ -836,7 +837,7 @@ console.log(paragraph.replaceAll(regex, 'ferret')) // 'I think Ruth's ferret is 
 >
 
 + **语法：**`str.matchAll(regexp)`
-+ **参数：**`regexp` 一个正则表达式对象
++ **参数：**`regexp` - 一个正则表达式对象
 + **返回值：** 一个迭代器对象
 
 ```javascript
@@ -885,8 +886,8 @@ Object.is(NaN, NaN) // true
 
 + **语法：**`Object.assign(target, ...sources)`
 + **参数：**
-    - `target` 目标对象
-    - `sources` 源对象
+    - `target` - 目标对象
+    - `sources` - 源对象
 + **返回值：** 目标对象
 
 ```javascript
@@ -905,7 +906,7 @@ console.log(returnedTarget === target) // true
 >
 
 + **语法：**`Object.getOwnPropertyDescriptors(obj)`
-+ **参数：**`obj` 要获取自身属性描述的对象
++ **参数：**`obj` - 要获取自身属性描述的对象
 + **返回值：** 返回一个对象，该对象的键是 obj 的自身属性名称，值是对应的属性描述对象
 
 ```javascript
@@ -928,8 +929,8 @@ console.log(descriptors1.property1.value) // 42
 
 + **语法：**`Object.setPrototypeOf(obj, prototype)`
 + **参数：**
-    - `obj` 要设置其原型的对象
-    - `prototype` 新的原型对象（一个对象或 `null`）
+    - `obj` - 要设置其原型的对象
+    - `prototype` - 新的原型对象（一个对象或 `null`）
 + **返回值：** 指定对象的原型（原型对象）。
 
 ```javascript
@@ -948,7 +949,7 @@ console.log(obj.foo) // bar
 >
 
 + **语法：**`Object.getPrototypeOf(obj)`
-+ **参数：**`obj` 必选，要返回原型对象的对象
++ **参数：**`obj` - 必选，要返回原型对象的对象
 + **返回值：** 返回指定对象的原型对象
 
 ```javascript
@@ -963,7 +964,7 @@ console.log(Object.getPrototypeOf(object1) === prototype1) // true
 >
 
 + **语法：**`Object.keys(obj)`
-+ **参数：**`obj` 要返回其属性名称的对象
++ **参数：**`obj` - 要返回其属性名称的对象
 + **返回值：** 一个字符串数组，包含了 `obj` 的所有可枚举属性的名称
 
 ```javascript
@@ -981,7 +982,7 @@ console.log(Object.keys(object1)) // ['a', 'b', 'c']
 >
 
 + **语法：**`Object.values(obj)`
-+ **参数：**`obj` 要返回其可枚举属性的值的对象
++ **参数：**`obj` - 要返回其可枚举属性的值的对象
 + **返回值：** 一个表示给定对象的所有可枚举属性值的数组
 
 ```javascript
@@ -999,7 +1000,7 @@ console.log(Object.values(object1)) // ['somestring', 42, false]
 >
 
 + **语法：**`Object.entries(obj)`
-+ **参数：**`obj` 要返回其枚举自身属性的对象
++ **参数：**`obj` - 要返回其枚举自身属性的对象
 + **返回值：** 一个给定对象自身可枚举属性的键值对数组
 
 ```javascript
@@ -1024,7 +1025,7 @@ for (const [key, value] of Object.entries(object1)) {
 >
 
 + **语法：**`Object.fromEntries(iterable)`
-+ **参数：**`iterable` 键值对列表
++ **参数：**`iterable` - 键值对列表
 + **返回值：** 一个新对象
 
 ```javascript
@@ -1047,8 +1048,8 @@ Object.fromEntries(new URLSearchParams('foo=bar&baz=qux')) // { foo: 'bar', baz:
 
 + **语法：**`Object.hasOwn(obj, key)`
 + **参数：**
-    - `obj` 对象
-    - `key` 属性名
+    - `obj` - 对象
+    - `key` - 属性名
 + **返回值：** 布尔值
 
 ```javascript
