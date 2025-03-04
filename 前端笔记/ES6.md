@@ -70,7 +70,7 @@ let [a, b, c] = [1, 2, 3];
 console.log(a) // 1
 console.log(b) // 2
 console.log(c) // 3
-//如果解构不成功，变量的值为undefined
+// 如果解构不成功，变量的值为 undefined
 ```
 
 **对象解构**
@@ -1903,17 +1903,32 @@ fn()
     - 其它微任务
 
 ```javascript
-setTimeout(function () {
-  console.log('1')
-})
+console.log('1')
 
-new Promise(function (resolve) {
+setTimeout(() => {
   console.log('2')
+  Promise.resolve().then(() => console.log('3'))
+}, 0)
+
+async function asyncCall() {
+  console.log('4')
+  await Promise.resolve()
+  console.log('5')
+  setTimeout(() => console.log('6'), 0)
+}
+
+asyncCall()
+
+new Promise(resolve => {
+  console.log('7')
   resolve()
-}).then(function () {
-  console.log('3')
+}).then(() => {
+  console.log('8')
+  Promise.resolve().then(() => console.log('9'))
 })
 
-console.log('4')
+console.log('10')
+
+// Output: 1 4 7 10 5 8 9 2 3 6
 ```
 
